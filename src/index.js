@@ -1,11 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
+import Main from './Main';
+import Bar from './Bar';
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    <div className='wrapper'>
+      <div className='container'>
+        <Main />
+        <Bar />
+        <footer className="footer"></footer>
+      </div>
+    </div>
   </React.StrictMode>
 );
