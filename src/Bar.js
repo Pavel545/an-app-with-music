@@ -1,21 +1,9 @@
 import "./css/style.css";
 
-function PlayerBtn(params) {
-  <div className={params.name}>
-    <svg className={params.svgName} alt={params.alt}>
-      <use xlinkHref={params.xlinkHref}></use>
-    </svg>
-  </div>;
-}
-function TrackPlay(params) {
-  return (
-    <div className={params.name}>
-      <a className={params.aName} href="http://">
-        {params.text}
-      </a>
-    </div>
-  );
-}
+import PlayerBtn from './PlayerBtn';
+import TrackPlay from './TrackPlay';
+
+
 
 function Bar() {
   return (

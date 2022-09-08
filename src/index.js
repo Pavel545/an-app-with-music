@@ -11,7 +11,6 @@ root.render(
       <div className='container'>
         <Main />
         <Bar />
-        <footer className="footer"></footer>
       </div>
     </div>
   </React.StrictMode>
