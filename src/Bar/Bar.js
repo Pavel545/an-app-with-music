@@ -1,7 +1,5 @@
-import "./css/style.css";
-
-import PlayerBtn from './PlayerBtn';
-import TrackPlay from './TrackPlay';
+import PlayerBtn from '../PlayerBtn/PlayerBtn';
+import TrackPlay from '../TrackPlay/TrackPlay';
 
 
 

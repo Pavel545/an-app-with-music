@@ -1,4 +1,3 @@
-import "./css/style.css";
 function NavMenu() {
     return (
       <div className="nav__menu menu">

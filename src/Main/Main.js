@@ -1,12 +1,12 @@
-import "./css/style.css";
+import "../css/style.css";
 
-import Search from './Search';
-import NavMenu from './NavMenu';
-import PlaylistItem from './PlaylistItem';
-import Sidebar from './Sidebar';
-import Burger from './Burger';
-import Filter from './Filter';
-import PlaylistTitle from './PlaylistTitle';
+import Search from '../Search/Search';
+import NavMenu from '../NavMenu/NavMenu';
+import PlaylistItem from '../Playlistltem/PlaylistItem';
+import Sidebar from '../Sudebar/Sidebar';
+import Burger from '../Burger/Burger';
+import Filter from '../Filter/Filter';
+import PlaylistTitle from '../PlaylistTitle/PlaylistTitle';
 
 function Main() {
   return (

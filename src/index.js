@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import Main from './Main';
-import Bar from './Bar';
+import Main from './Main/Main';
+import Bar from './Bar/Bar';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
