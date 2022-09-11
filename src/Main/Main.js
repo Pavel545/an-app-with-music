@@ -1,14 +1,43 @@
 import "../css/style.css";
 
-import Search from '../Search/Search';
-import NavMenu from '../NavMenu/NavMenu';
-import PlaylistItem from '../Playlistltem/PlaylistItem';
-import Sidebar from '../Sudebar/Sidebar';
-import Burger from '../Burger/Burger';
-import Filter from '../Filter/Filter';
-import PlaylistTitle from '../PlaylistTitle/PlaylistTitle';
+import Search from "../Search/Search";
+import PlaylistItem from "../Playlistltem/PlaylistItem";
+import Sidebar from "../Sudebar/Sidebar";
+import Burger from "../Burger/Burger";
+import PlaylistTitle from "../PlaylistTitle/PlaylistTitle";
+import React from "react";
+import AuthorWindow from "../pop-upWindow/authorWindow.js";
+import YearWindow from "../pop-upWindow/yearWindow";
+import GenreWindow from "../pop-upWindow/genreWindow.js";
+import Loading from "../Loaging/Loading";
+import Item from "../Playlistltem/PlaylistItem";
+
+const { useState } = React;
+
 
 function Main() {
+  const [isOpenAuthor, setIsOpenAuthor] = useState(false);
+  const toggleAuthor = () => {
+    setIsOpenAuthor(!isOpenAuthor);
+    setIsOpenYear(false);
+    setIsOpenGenre(false);
+  };
+  const [isOpenYear, setIsOpenYear] = useState(false);
+  const toggleYear = () => {
+    setIsOpenYear(!isOpenYear);
+    setIsOpenAuthor(false);
+    setIsOpenGenre(false);
+  };
+  const [isOpenGenre, setIsOpenGenre] = useState(false);
+  const toggleGenre = () => {
+    setIsOpenGenre(!isOpenGenre);
+    setIsOpenAuthor(false);
+    setIsOpenYear(false);
+  };
+  const [isOpenLoading, setIsOpenLoading] = useState(true);
+  const toggleLoading = () => {
+    setIsOpenLoading(false);
+  };
   return (
     <main className="main">
       <nav className="main_nav nav">
@@ -20,82 +49,39 @@ function Main() {
           />
         </div>
         <Burger />
-        <NavMenu />
       </nav>
       <div className="main__centerblock centerblock">
         <Search />
         <h2 className="centerblock__h2">Треки</h2>
-        <Filter />
+        <div className="centerblock__filter filter">
+          <div className="filter__title">Искать по:</div>
+          <div
+            className="filter__button button-author _btn-text"
+            onClick={toggleAuthor}
+          >
+            исполнителю
+          </div>
+          {isOpenAuthor && <AuthorWindow />}
+
+          <div
+            className="filter__button button-year _btn-text"
+            onClick={toggleYear}
+          >
+            году выпуска
+          </div>
+          {isOpenYear && <YearWindow />}
+          <div
+            className="filter__button button-genre _btn-text"
+            onClick={toggleGenre}
+          >
+            жанру
+          </div>
+          {isOpenGenre && <GenreWindow />}
+        </div>
         <div className="centerblock__content">
           <PlaylistTitle />
-          <div className="content__playlist playlist">
-            <PlaylistItem
-              name="Guilt"
-              executor="Nero"
-              album="Welcome Reality"
-              time="4:44"
-            />
-            <PlaylistItem
-              name="Elektro"
-              executor="Dynoro, Outwork, Mr. Gee"
-              album="Elektro"
-              time="2:22"
-            />
-            <PlaylistItem
-              name="I’m Fire"
-              executor="Ali Bakgor"
-              album="I’m Fire"
-              time="2:22"
-            />
-            <PlaylistItem
-              name="Non Stop"
-              executor="Стоункат, Psychopath"
-              album="Non Stop"
-              time="4:12"
-            />
-            <PlaylistItem
-              name="Run Run"
-              executor="Jaded, Will Clarke, AR/CO"
-              album="Run Run"
-              time="2:54"
-            />
-            <PlaylistItem
-              name="Eyes on Fire"
-              executor="Blue Foundation, Zeds Dead"
-              album="Eyes on Fire"
-              time="5:20"
-            />
-            <PlaylistItem
-              name="Mucho Bien"
-              executor="HYBIT, Mr. Black, Offer Nissim, Hi Profile"
-              album="Mucho Bien"
-              time="3:41"
-            />
-            <PlaylistItem
-              name="Knives n Cherries"
-              executor="minthaze"
-              album="Captivating"
-              time="1:48"
-            />
-            <PlaylistItem
-              name="How Deep Is Your Love"
-              executor="Calvin Harris, Disciples"
-              album="How Deep Is Your Love"
-              time="3:32"
-            />
-            <PlaylistItem
-              name="Morena"
-              executor="Tom Boxer"
-              album="Soundz Made in Romania"
-              time="3:36"
-            />
-            <PlaylistItem
-              name="Morena"
-              executor="Tom Boxer"
-              album="Soundz Made in Romania"
-              time="3:36"
-            />
-          </div>
+          {isOpenLoading ? <Loading />:<Item/>}
+          {setTimeout(toggleLoading,2000)}
         </div>
       </div>
       <Sidebar />
