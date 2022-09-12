@@ -11,6 +11,7 @@ import YearWindow from "../pop-upWindow/yearWindow";
 import GenreWindow from "../pop-upWindow/genreWindow.js";
 import Loading from "../Loaging/Loading";
 import Item from "../Playlistltem/PlaylistItem";
+import SibebarLoad from "../Loaging/LoadSubibar";
 
 const { useState } = React;
 
@@ -84,7 +85,9 @@ function Main() {
           {setTimeout(toggleLoading,2000)}
         </div>
       </div>
-      <Sidebar />
+      {isOpenLoading ? <SibebarLoad/>:<Sidebar />}
+
+      
     </main>
   );
 }
