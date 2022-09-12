@@ -6,15 +6,14 @@ import Sidebar from "../Sudebar/Sidebar";
 import Burger from "../Burger/Burger";
 import PlaylistTitle from "../PlaylistTitle/PlaylistTitle";
 import React from "react";
-import AuthorWindow from "../pop-upWindow/authorWindow.js";
+import AuthorWindow from "../pop-upWindow/authorWindow";
 import YearWindow from "../pop-upWindow/yearWindow";
-import GenreWindow from "../pop-upWindow/genreWindow.js";
+import GenreWindow from "../pop-upWindow/genreWindow";
 import Loading from "../Loaging/Loading";
 import Item from "../Playlistltem/PlaylistItem";
 import SibebarLoad from "../Loaging/LoadSubibar";
 
-const { useState } = React;
-
+const { useState,useEffect } = React;
 
 function Main() {
   const [isOpenAuthor, setIsOpenAuthor] = useState(false);
@@ -36,9 +35,12 @@ function Main() {
     setIsOpenYear(false);
   };
   const [isOpenLoading, setIsOpenLoading] = useState(true);
-  const toggleLoading = () => {
+  const finishLoading = () => {
     setIsOpenLoading(false);
   };
+  useEffect(() => {
+    setTimeout(finishLoading , 2000)
+  });
   return (
     <main className="main">
       <nav className="main_nav nav">
@@ -81,13 +83,10 @@ function Main() {
         </div>
         <div className="centerblock__content">
           <PlaylistTitle />
-          {isOpenLoading ? <Loading />:<Item/>}
-          {setTimeout(toggleLoading,2000)}
+          {isOpenLoading ? <Loading /> : <Item />}
         </div>
       </div>
-      {isOpenLoading ? <SibebarLoad/>:<Sidebar />}
-
-      
+      {isOpenLoading ? <SibebarLoad /> : <Sidebar />}
     </main>
   );
 }

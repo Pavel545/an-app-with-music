@@ -44,11 +44,14 @@ function PlayTrack() {
   );
 }
 
-const { useState } = React;
+const { useState, useEffect } = React;
 
 function Bar() {
   const [isOpenLoading, setIsOpenLoading] = useState(true);
-  const toggleLoading = () => {
+  useEffect(() => {
+    setTimeout(finishLoading , 2000)
+  });
+  const finishLoading = () => {
     setIsOpenLoading(false);
   };
   return (
@@ -89,7 +92,6 @@ function Bar() {
                 xlinkHref="img/icon/sprite.svg#icon-shuffle"
               />
             </div>
-            {setTimeout(toggleLoading, 2000)}
             {isOpenLoading ? <LoadingBar /> : <PlayTrack />}
           </div>
           <div className="bar__volume-block volume">
