@@ -39,8 +39,9 @@ function Main() {
     setIsOpenLoading(false);
   };
   useEffect(() => {
-    setTimeout(finishLoading , 2000)
-  });
+    const timer = setTimeout(finishLoading , 2000)
+    return clearTimeout(timer)
+  }, []);
   return (
     <main className="main">
       <nav className="main_nav nav">

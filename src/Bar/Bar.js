@@ -49,8 +49,9 @@ const { useState, useEffect } = React;
 function Bar() {
   const [isOpenLoading, setIsOpenLoading] = useState(true);
   useEffect(() => {
-    setTimeout(finishLoading , 2000)
-  });
+    const timer = setTimeout(finishLoading , 2000)
+    return clearTimeout(timer)
+  }, []);
   const finishLoading = () => {
     setIsOpenLoading(false);
   };
