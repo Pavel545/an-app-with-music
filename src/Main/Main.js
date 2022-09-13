@@ -11,9 +11,11 @@ import YearWindow from "../pop-upWindow/yearWindow";
 import GenreWindow from "../pop-upWindow/genreWindow";
 import Loading from "../Loaging/Loading";
 import Item from "../Playlistltem/PlaylistItem";
+
 import SibebarLoad from "../Loaging/LoadSubibar";
 
 const { useState,useEffect } = React;
+
 
 function Main() {
   const [isOpenAuthor, setIsOpenAuthor] = useState(false);
@@ -35,6 +37,7 @@ function Main() {
     setIsOpenYear(false);
   };
   const [isOpenLoading, setIsOpenLoading] = useState(true);
+
   const finishLoading = () => {
     setIsOpenLoading(false);
   };
@@ -42,6 +45,7 @@ function Main() {
     const timer = setTimeout(finishLoading , 2000)
     return clearTimeout(timer)
   }, []);
+
   return (
     <main className="main">
       <nav className="main_nav nav">
@@ -84,7 +88,9 @@ function Main() {
         </div>
         <div className="centerblock__content">
           <PlaylistTitle />
+
           {isOpenLoading ? <Loading /> : <Item />}
+
         </div>
       </div>
       {isOpenLoading ? <SibebarLoad /> : <Sidebar />}

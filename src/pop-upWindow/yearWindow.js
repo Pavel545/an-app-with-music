@@ -1,9 +1,17 @@
 function YearWindow() {
-    return (
-      <div className="window_year ">
-        <input type="radio" name="elem" value="1" checked></input>
-        <input type="radio" name="elem" value="2"></input>
+
+  return (
+    <div className="filter__title window_year ">
+      <div>
+        <input  type="radio" name="elem" value="" checked />
+        <label className="window_text">Более новые</label>
       </div>
-    );
-  }
-  export default YearWindow;
+      <div>
+        <input type="radio" name="elem" value="" />
+        <label className="window_text">Более старые</label>
+      </div>
+    </div>
+  );
+}
+export default YearWindow;
+

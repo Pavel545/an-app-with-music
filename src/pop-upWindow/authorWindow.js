@@ -1,7 +1,10 @@
+
 function AuthorWindow() {
     return (
-      <div className="window">
-        
+      <div className="filter__title window ">
+        <a className="window_text">Nero</a>
+        <a className="window_text">Dynoro</a>
+
       </div>
     );
   }
