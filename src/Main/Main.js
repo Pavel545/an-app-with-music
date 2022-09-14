@@ -17,10 +17,6 @@ import NavMenu from "../NavMenu/NavMenu";
 const { useState,useEffect } = React;
 
 function Main() {
-  const [isOpenMenu, setIsOpenMenu] = useState(true);
-  const toggleMenu = () => {
-    setIsOpenMenu(!isOpenMenu);
-  }  
   const [isOpenAuthor, setIsOpenAuthor] = useState(false);
   const toggleAuthor = () => {
     setIsOpenAuthor(!isOpenAuthor);
@@ -56,11 +52,7 @@ function Main() {
             alt="logo"
           />
         </div>
-        <Burger onClick={toggleMenu}/>
-        {isOpenMenu && <NavMenu />}
-
-        
-
+        <Burger />
       </nav>
       <div className="main__centerblock centerblock">
         <Search />
