@@ -2,6 +2,7 @@ import React from "react";
 import LoadingBar from "../Loaging/LoadBar";
 import PlayerBtn from "../PlayerBtn/PlayerBtn";
 import TrackPlay from "../TrackPlay/TrackPlay";
+import * as S from "./style";
 
 function PlayTrack() {
   return (
@@ -49,19 +50,18 @@ const { useState, useEffect } = React;
 function Bar() {
   const [isOpenLoading, setIsOpenLoading] = useState(true);
   useEffect(() => {
-    const timer = setTimeout(finishLoading , 2000)
-    return clearTimeout(timer)
-  }, []);
+    setTimeout(finishLoading, 2000);
+  });
   const finishLoading = () => {
     setIsOpenLoading(false);
   };
   return (
-    <div className="bar">
-      <div className="bar__content">
-        <div className="bar__player-progress"></div>
-        <div className="bar__player-block">
-          <div className="bar__player player">
-            <div className="player__controls">
+    <S.Bar>
+      <S.BarContent>
+        <S.BarPlayerProgress />
+        <S.BarPlayerBlock>
+          <S.BarPlayer>
+            <S.PlayerControls>
               <PlayerBtn
                 name="player__btn-prev"
                 svgName="player__btn-prev-svg"
@@ -92,11 +92,11 @@ function Bar() {
                 alt="shuffle"
                 xlinkHref="img/icon/sprite.svg#icon-shuffle"
               />
-            </div>
+            </S.PlayerControls>
             {isOpenLoading ? <LoadingBar /> : <PlayTrack />}
-          </div>
-          <div className="bar__volume-block volume">
-            <div className="volume__content">
+          </S.BarPlayer>
+          <S.BarVolumeBlockVo>
+            <S.VolumeContent>
               <PlayerBtn
                 name="volume__image"
                 svgName="volume__svg"
@@ -104,18 +104,17 @@ function Bar() {
                 xlinkHref="img/icon/sprite.svg#icon-volume"
               />
 
-              <div className="volume__progress _btn">
-                <input
-                  className="volume__progress-line _btn"
+              <S.VolumeProgress>
+                <S.VolumeProgressLine
                   type="range"
                   name="range"
                 />
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+              </S.VolumeProgress>
+            </S.VolumeContent>
+          </S.BarVolumeBlockVo>
+        </S.BarPlayerBlock>
+      </S.BarContent>
+    </S.Bar>
   );
 }
 

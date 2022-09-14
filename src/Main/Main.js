@@ -12,10 +12,15 @@ import GenreWindow from "../pop-upWindow/genreWindow";
 import Loading from "../Loaging/Loading";
 import Item from "../Playlistltem/PlaylistItem";
 import SibebarLoad from "../Loaging/LoadSubibar";
+import NavMenu from "../NavMenu/NavMenu";
 
 const { useState,useEffect } = React;
 
 function Main() {
+  const [isOpenMenu, setIsOpenMenu] = useState(true);
+  const toggleMenu = () => {
+    setIsOpenMenu(!isOpenMenu);
+  }  
   const [isOpenAuthor, setIsOpenAuthor] = useState(false);
   const toggleAuthor = () => {
     setIsOpenAuthor(!isOpenAuthor);
@@ -39,9 +44,8 @@ function Main() {
     setIsOpenLoading(false);
   };
   useEffect(() => {
-    const timer = setTimeout(finishLoading , 2000)
-    return clearTimeout(timer)
-  }, []);
+    setTimeout(finishLoading , 2000)
+  });
   return (
     <main className="main">
       <nav className="main_nav nav">
@@ -52,7 +56,11 @@ function Main() {
             alt="logo"
           />
         </div>
-        <Burger />
+        <Burger onClick={toggleMenu}/>
+        {isOpenMenu && <NavMenu />}
+
+        
+
       </nav>
       <div className="main__centerblock centerblock">
         <Search />

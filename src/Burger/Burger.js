@@ -1,10 +1,13 @@
+import * as S from "./style";
+
+
 function Burger() {
     return (
-      <div className="nav__burger burger">
-        <span className="burger__line" />
-        <span className="burger__line" />
-        <span className="burger__line" />
-      </div>
+      <S.NavBurger>
+        <S.BurgerLine />
+        <S.BurgerLine/>
+        <S.BurgerLine />
+      </S.NavBurger>
     );
   }
   export default Burger;

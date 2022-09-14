@@ -1,6 +1,8 @@
+import * as S from "./style";
+
 function Item() {
   return(
-    <div className="content__playlist playlist">
+    <S.ContentPlaylist>
     <PlaylistItem
       name="Guilt"
       executor="Nero"
@@ -67,15 +69,15 @@ function Item() {
       album="Soundz Made in Romania"
       time="3:36"
     />
-  </div>
+  </S.ContentPlaylist>
 
   )
 }
 function PlaylistItem(props) {
     return (
-      <div className="playlist__item">
-        <div className="playlist__track track">
-          <div className="track__title">
+      <S.PlaylistItem>
+        <S.PlaylistTrack>
+          <S.TrackTitle>
             <div className="track__title-image">
               <svg className="track__title-svg" alt="music">
                 <use xlinkHref="img/icon/sprite.svg#icon-note" />
@@ -86,25 +88,25 @@ function PlaylistItem(props) {
                 {props.name} <span className="track__title-span" />
               </a>
             </div>
-          </div>
-          <div className="track__author">
-            <a className="track__author-link" href="http://">
+          </S.TrackTitle>
+          <S.TrackAuthor>
+            <S.TrackAuthorLink href="http://">
               {props.executor}
-            </a>
-          </div>
-          <div className="track__album">
-            <a className="track__album-link" href="http://">
+            </S.TrackAuthorLink>
+          </S.TrackAuthor>
+          <S.TrackAlbum>
+            <S.TrackAlbumLink href="http://">
               {props.album}
-            </a>
-          </div>
+            </S.TrackAlbumLink>
+          </S.TrackAlbum>
           <div className="track__time">
-            <svg className="track__time-svg" alt="time">
+            <S.TrackTimeSvg alt="time">
               <use xlinkHref="img/icon/sprite.svg#icon-like"></use>
-            </svg>
-            <span className="track__time-text">{props.time}</span>
+            </S.TrackTimeSvg>
+            <S.TrackTimeText>{props.time}</S.TrackTimeText>
           </div>
-        </div>
-      </div>
+        </S.PlaylistTrack>
+      </S.PlaylistItem>
     );
   }
 export default Item;

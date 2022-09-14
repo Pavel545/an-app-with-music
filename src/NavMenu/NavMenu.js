@@ -1,24 +1,27 @@
+import * as S from "./style";
+ 
+
 function NavMenu() {
     return (
-      <div className="nav__menu menu">
-        <ul className="menu__list">
-          <li className="menu__item">
-            <a href="http://" className="menu__link">
+      <S.NavMenu>
+        <S.MenuList>
+          <S.MenuItem>
+            <S.menuLink href="http://">
               Главное
-            </a>
-          </li>
-          <li className="menu__item">
-            <a href="http://" className="menu__link">
+            </S.menuLink>
+          </S.MenuItem>
+          <S.MenuItem>
+            <S.menuLink href="http://">
               Мой плейлист
-            </a>
-          </li>
-          <li className="menu__item">
-            <a href="http://" className="menu__link">
+            </S.menuLink>
+          </S.MenuItem>
+          <S.MenuItem>
+            <S.menuLink href="http://">
               Войти
-            </a>
-          </li>
-        </ul>
-      </div>
+            </S.menuLink>
+          </S.MenuItem>
+        </S.MenuList>
+      </S.NavMenu>
     );
   }
 export default NavMenu;

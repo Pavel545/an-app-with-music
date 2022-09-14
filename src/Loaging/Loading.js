@@ -1,7 +1,7 @@
 function Element() {
     return(
         <div className="playlist__item loading">
-            <img class="sidebar__img" src="img/loading/Loading.png" ></img>
+            <img className="sidebar__img" src="img/loading/Loading.png" ></img>
         </div>
     )
 }
