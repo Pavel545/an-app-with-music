@@ -1,5 +1,5 @@
 import React from "react";
-import LoadingBar from "../Loaging/LoadBar";
+import * as SB from "../Loaging/Loading";
 import PlayerBtn from "../PlayerBtn/PlayerBtn";
 import TrackPlay from "../TrackPlay/TrackPlay";
 import * as S from "./style";
@@ -93,7 +93,7 @@ function Bar() {
                 xlinkHref="img/icon/sprite.svg#icon-shuffle"
               />
             </S.PlayerControls>
-            {isOpenLoading ? <LoadingBar /> : <PlayTrack />}
+            {isOpenLoading ? <SB.LoadingBar /> : <PlayTrack />}
           </S.BarPlayer>
           <S.BarVolumeBlockVo>
             <S.VolumeContent>

@@ -1,16 +1,17 @@
+import * as S from "./style";
+
 function PlaylistTitle() {
-    return (
-      <div className="content__title playlist-title">
-        <div className="playlist-title__col col01">Трек</div>
-        <div className="playlist-title__col col02">ИСПОЛНИТЕЛЬ</div>
-        <div className="playlist-title__col col03">АЛЬБОМ</div>
-        <div className="playlist-title__col col04">
-          <svg className="playlist-title__svg" alt="time">
-            <use xlinkHref="img/icon/sprite.svg#icon-watch" />
-          </svg>
-        </div>
-      </div>
-    );
-  }
-  export default PlaylistTitle;
-  
+  return (
+    <S.ContentTitle>
+      <S.PlaylistTitleCol number="1">Трек</S.PlaylistTitleCol>
+      <S.PlaylistTitleCol number="2">ИСПОЛНИТЕЛЬ</S.PlaylistTitleCol>
+      <S.PlaylistTitleCol number="3">АЛЬБОМ</S.PlaylistTitleCol>
+      <S.PlaylistTitleCol number="4">
+        <S.PlaylistTitleSvg alt="time">
+          <use xlinkHref="img/icon/sprite.svg#icon-watch" />
+        </S.PlaylistTitleSvg>
+      </S.PlaylistTitleCol>
+    </S.ContentTitle>
+  );
+}
+export default PlaylistTitle;

@@ -1,18 +1,16 @@
-import "../css/style.css";
+import * as S from "./style";
+
 
 import Search from "../Search/Search";
-import PlaylistItem from "../Playlistltem/PlaylistItem";
-import Sidebar from "../Sudebar/Sidebar";
+import Sidebar from "../Sidebar/Sidebar";
 import Burger from "../Burger/Burger";
 import PlaylistTitle from "../PlaylistTitle/PlaylistTitle";
 import React from "react";
-import AuthorWindow from "../pop-upWindow/authorWindow";
-import YearWindow from "../pop-upWindow/yearWindow";
-import GenreWindow from "../pop-upWindow/genreWindow";
-import Loading from "../Loaging/Loading";
+import * as Window from "../pop-upWindow/Window";
+import * as Loading from "../Loaging/Loading";
 import Item from "../Playlistltem/PlaylistItem";
-import SibebarLoad from "../Loaging/LoadSubibar";
-import NavMenu from "../NavMenu/NavMenu";
+
+
 
 const { useState,useEffect } = React;
 
@@ -43,52 +41,49 @@ function Main() {
     setTimeout(finishLoading , 2000)
   });
   return (
-    <main className="main">
-      <nav className="main_nav nav">
-        <div className="nav__logo logo">
-          <img
-            className="logo__image"
+    
+    <S.Main>
+      <S.MainNav>
+        <S.NavLogo>
+          <S.LogoImage
             src="my-app/public/img/logo.png"
             alt="logo"
           />
-        </div>
+        </S.NavLogo>
         <Burger />
-      </nav>
-      <div className="main__centerblock centerblock">
+      </S.MainNav>
+      <S.MainCenterBlock>
         <Search />
-        <h2 className="centerblock__h2">Треки</h2>
-        <div className="centerblock__filter filter">
-          <div className="filter__title">Искать по:</div>
-          <div
-            className="filter__button button-author _btn-text"
+        <S.CenterblockH2>Треки</S.CenterblockH2>
+        <S.CenterBlockFilter>
+          <S.FilterTitle>Искать по:</S.FilterTitle>
+          <S.FilterButton
             onClick={toggleAuthor}
           >
             исполнителю
-          </div>
-          {isOpenAuthor && <AuthorWindow />}
+          </S.FilterButton>
+          {isOpenAuthor && <Window.AuthorWindow />}
 
-          <div
-            className="filter__button button-year _btn-text"
+          <S.FilterButton
             onClick={toggleYear}
           >
             году выпуска
-          </div>
-          {isOpenYear && <YearWindow />}
-          <div
-            className="filter__button button-genre _btn-text"
+          </S.FilterButton>
+          {isOpenYear && <Window.YearWindow />}
+          <S.FilterButton
             onClick={toggleGenre}
           >
             жанру
-          </div>
-          {isOpenGenre && <GenreWindow />}
-        </div>
-        <div className="centerblock__content">
+          </S.FilterButton>
+          {isOpenGenre && <Window.GenreWindow />}
+        </S.CenterBlockFilter>
+        <S.CenterblockContent>
           <PlaylistTitle />
-          {isOpenLoading ? <Loading /> : <Item />}
-        </div>
-      </div>
-      {isOpenLoading ? <SibebarLoad /> : <Sidebar />}
-    </main>
+          {isOpenLoading ? <Loading.LoadingPly /> : <Item />}
+        </S.CenterblockContent>
+      </S.MainCenterBlock>
+      {isOpenLoading ? <Loading.SidebarLoad /> : <Sidebar />}
+    </S.Main>
   );
 }
 export default Main;

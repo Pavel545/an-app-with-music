@@ -1,10 +1,13 @@
+import * as S from "./style";
+
+
 function TrackPlay(params) {
     return (
-      <div className={params.name}>
-        <a className={params.aName} href="http://">
+      <S.TrackPlayClass name ={params.name}>
+        <S.TrackPlay_Link name ={params.aName} href="http://">
           {params.text}
-        </a>
-      </div>
+        </S.TrackPlay_Link >
+      </S.TrackPlayClass >
     );
   }
   export default TrackPlay;

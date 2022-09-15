@@ -1,5 +1,7 @@
 import * as S from "./style";
+
 import NavMenu from "../NavMenu/NavMenu";
+import React from "react";
 
 const { useState } = React;
 
@@ -8,6 +10,7 @@ function Burger() {
   const toggleVisibility = () => {
     setIsOpenMenu(!isOpenMenu);
   };
+  
     return (
       <div>
         <S.NavBurger onClick={toggleVisibility}>

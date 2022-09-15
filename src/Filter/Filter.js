@@ -1,9 +1,11 @@
+import * as S from "./style";
+
 function Filter() {
-    <div className="centerblock__filter filter">
-      <div className="filter__title">Искать по:</div>
-      <div className="filter__button button-author _btn-text">исполнителю</div>
-      <div className="filter__button button-year _btn-text">году выпуска</div>
-      <div className="filter__button button-genre _btn-text">жанру</div>
-    </div>;
-  }
-  export default Filter;
+  <div>
+    <S.FilterTitle>Искать по:</S.FilterTitle>
+    <S.FilterButton>исполнителю</S.FilterButton>
+    <S.FilterButton>году выпуска</S.FilterButton>
+    <S.FilterButton>жанру</S.FilterButton>
+  </div>;
+}
+export default Filter;

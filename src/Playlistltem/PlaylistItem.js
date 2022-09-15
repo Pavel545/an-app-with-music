@@ -78,15 +78,15 @@ function PlaylistItem(props) {
       <S.PlaylistItem>
         <S.PlaylistTrack>
           <S.TrackTitle>
-            <div className="track__title-image">
-              <svg className="track__title-svg" alt="music">
+            <S.TrackTitleImage>
+              <S.TrackTitleSvg alt="music">
                 <use xlinkHref="img/icon/sprite.svg#icon-note" />
-              </svg>
-            </div>
+              </S.TrackTitleSvg>
+            </S.TrackTitleImage>
             <div className="track__title-text">
-              <a className="track__title-link" href="http://">
-                {props.name} <span className="track__title-span" />
-              </a>
+              <S.TrackTitleLink href="http://">
+                {props.name} <S.TrackTitleSpan />
+              </S.TrackTitleLink>
             </div>
           </S.TrackTitle>
           <S.TrackAuthor>
