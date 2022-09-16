@@ -7,13 +7,9 @@ const { useState } = React;
 
 function Burger() {
   const [isOpenMenu, setIsOpenMenu] = useState(false);
-  const toggleVisibility = () => {
-    setIsOpenMenu(!isOpenMenu);
-  };
-  
     return (
       <div>
-        <S.NavBurger onClick={toggleVisibility}>
+        <S.NavBurger onClick={() => setIsOpenMenu(!isOpenMenu)}>
         <S.BurgerLine />
         <S.BurgerLine/>
         <S.BurgerLine />

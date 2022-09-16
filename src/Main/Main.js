@@ -15,6 +15,7 @@ import Item from "../Playlistltem/PlaylistItem";
 const { useState,useEffect } = React;
 
 function Main() {
+
   const [isOpenAuthor, setIsOpenAuthor] = useState(false);
   const toggleAuthor = () => {
     setIsOpenAuthor(!isOpenAuthor);
@@ -38,8 +39,11 @@ function Main() {
     setIsOpenLoading(false);
   };
   useEffect(() => {
-    setTimeout(finishLoading , 2000)
+    const intervalId = setTimeout(finishLoading, 2000);;
+
+    return () => clearTimeout(intervalId);
   });
+  
   return (
     
     <S.Main>
