@@ -1,7 +1,7 @@
 import * as S from "./style";
 
-import Main from '../Main/Main';
-import Bar from '../Bar/Bar';
+import Main from '../../components/Main/Main';
+import Bar from '../../components/Bar/Bar';
 
 
 function Content() {
