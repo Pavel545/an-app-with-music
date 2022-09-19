@@ -3,7 +3,8 @@ import * as S from "./style";
 import NavMenu from "../NavMenu/NavMenu";
 import React from "react";
 
-const { useState } = React;
+import { useState} from 'react';
+
 
 function Burger() {
   const [isOpenMenu, setIsOpenMenu] = useState(false);

@@ -1,15 +1,15 @@
 import * as S from "./style";
 
-import Main from '../../components/Main/Main';
-import Bar from '../../components/Bar/Bar';
+import { AppRoutes } from "../../routes";
 
 
 function Content() {
+
+
   return (
     <S.Wrapper>
       <S.Container>
-        <Main />
-        <Bar />
+        <AppRoutes user={true}/>
       </S.Container>
     </S.Wrapper>
   );

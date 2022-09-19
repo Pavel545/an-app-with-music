@@ -3,7 +3,8 @@ import * as SB from "../Loaging/Loading";
 import PlayerBtn from "../PlayerBtn/PlayerBtn";
 import * as S from "./style";
 import PlayTrack from "../PlayTrack/PlayTrack";
-const { useState, useEffect } = React;
+import { useState, useEffect } from 'react';
+
 
 
 
