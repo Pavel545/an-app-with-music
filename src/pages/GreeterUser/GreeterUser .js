@@ -1,4 +1,4 @@
-import { AppRoutes } from "./routes";
+import { AppRoutes } from "../../routes";
 import { useState } from "react";
 import { Authorization } from "./pages/login";
 

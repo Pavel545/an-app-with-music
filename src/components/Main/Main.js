@@ -6,7 +6,7 @@ import Sidebar from "../Sidebar/Sidebar";
 import Burger from "../Burger/Burger";
 import PlaylistTitle from "../PlaylistTitle/PlaylistTitle";
 import React from "react";
-import * as Window from "../pop-upWindow/Window";
+import * as Window from "../Pop-upWindow/Window";
 import * as Loading from "../Loaging/Loading";
 import Item from "../Playlistltem/PlaylistItem";
 
