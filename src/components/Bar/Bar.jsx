@@ -3,7 +3,11 @@ import * as SB from '../Loaging/Loading'
 import PlayerBtn from '../PlayerBtn/PlayerBtn'
 import * as S from './style'
 import PlayTrack from '../PlayTrack/PlayTrack'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
+import { tracks } from './Treac'
+import AudioControls from '../AudioControls/AudioControls'
+
+
 
 function Bar() {
     const [isOpenLoading, setIsOpenLoading] = useState(true)
@@ -15,45 +19,119 @@ function Bar() {
     const finishLoading = () => {
         setIsOpenLoading(false)
     }
+
+    const [trackIndex, setTrackIndex] = useState(0)
+    const [trackProgress, setTrackProgress] = useState(0)
+    const [isPlaying, setIsPlaying] = useState(false)
+
+    const { title, artist, audioSrc } = tracks[trackIndex]
+
+    const audioRef = useRef(new Audio(audioSrc))
+    const intervalRef = useRef()
+    const isReady = useRef(false)
+
+    const { duration } = audioRef.current
+    const toPrevTrack = () => {
+        console.log('TODO go to prev')
+        if (trackIndex - 1 < 0) {
+            setTrackIndex(tracks.length - 1)
+        } else {
+            setTrackIndex(trackIndex - 1)
+        }
+    }
+    const toNextTrack = () => {
+        console.log('TODO go to next')
+        if (trackIndex < tracks.length - 1) {
+            setTrackIndex(trackIndex + 1)
+        } else {
+            setTrackIndex(0)
+        }
+    }
+    useEffect(() => {
+        if (isPlaying) {
+            audioRef.current.play()
+            startTimer()
+        } else {
+            audioRef.current.pause()
+        }
+    }, [isPlaying])
+    useEffect(() => {
+        return () => {
+            audioRef.current.pause()
+            clearInterval(intervalRef.current)
+        }
+    }, [])
+    useEffect(() => {
+        audioRef.current.pause()
+
+        audioRef.current = new Audio(audioSrc)
+        setTrackProgress(audioRef.current.currentTime)
+
+        if (isReady.current) {
+            audioRef.current.play()
+            setIsPlaying(true)
+            startTimer()
+        } else {
+            isReady.current = true
+        }
+    }, [trackIndex])
+
+    const startTimer = () => {
+        clearInterval(intervalRef.current)
+
+        intervalRef.current = setInterval(() => {
+            if (audioRef.current.ended) {
+                toNextTrack()
+            } else {
+                setTrackProgress(audioRef.current.currentTime)
+            }
+        }, [1000])
+    }
+
+    const onScrub = (value) => {
+        clearInterval(intervalRef.current)
+        audioRef.current.currentTime = value
+        setTrackProgress(audioRef.current.currentTime)
+    }
+    const onScrubEnd = () => {
+        if (!isPlaying) {
+            setIsPlaying(true)
+        }
+        startTimer()
+    }
+    const currentPercentage = duration
+        ? `${(trackProgress / duration) * 100}%`
+        : '0%'
+    const trackStyling = `
+  -webkit-gradient(linear, 0% 0%, 100% 0%, color-stop(${currentPercentage}, #2e2e2e), color-stop(${currentPercentage}, #777))
+`
     return (
         <S.Bar>
             <S.BarContent>
-                <S.BarPlayerProgress />
+                <S.BarPlayerProgress
+                    type="range"
+                    value={trackProgress}
+                    step="1"
+                    min="0"
+                    max={duration ? duration : `${duration}`}
+                    onChange={(e) => onScrub(e.target.value)}
+                    onMouseUp={onScrubEnd}
+                    onKeyUp={onScrubEnd}
+                    style={{ background: trackStyling }}
+                />
                 <S.BarPlayerBlock>
                     <S.BarPlayer>
-                        <S.PlayerControls>
-                            <PlayerBtn
-                                name="player__btn-prev"
-                                svgName="player__btn-prev-svg"
-                                alt="prev"
-                                xlinkHref="img/icon/sprite.svg#icon-prev"
-                            />
-                            <PlayerBtn
-                                name="player__btn-play _btn"
-                                svgName="player__btn-play-svg"
-                                alt="play"
-                                xlinkHref="img/icon/sprite.svg#icon-play"
-                            />
-                            <PlayerBtn
-                                name="player__btn-next"
-                                svgName="player__btn-next-svg"
-                                alt="next"
-                                xlinkHref="img/icon/sprite.svg#icon-next"
-                            />
-                            <PlayerBtn
-                                name="player__btn-repeat _btn-icon"
-                                svgName="player__btn-repeat-svg"
-                                alt="repeat"
-                                xlinkHref="img/icon/sprite.svg#icon-repeat"
-                            />
-                            <PlayerBtn
-                                name="player__btn-shuffle _btn-icon"
-                                svgName="player__btn-shuffle-svg"
-                                alt="shuffle"
-                                xlinkHref="img/icon/sprite.svg#icon-shuffle"
-                            />
-                        </S.PlayerControls>
-                        {isOpenLoading ? <SB.LoadingBar /> : <PlayTrack />}
+                        <AudioControls
+                            isPlaying={isPlaying}
+                            onPrevClick={toPrevTrack}
+                            onNextClick={toNextTrack}
+                            onPlayPauseClick={setIsPlaying}
+                        />
+                        {isOpenLoading ? (
+                            <SB.LoadingBar />
+                        ) : (
+                            <PlayTrack autho={artist} album={title} />
+                        )}
                     </S.BarPlayer>
                     <S.BarVolumeBlockVo>
                         <S.VolumeContent>
