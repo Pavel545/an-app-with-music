@@ -7,8 +7,6 @@ import { useState, useEffect, useRef } from 'react'
 import { tracks } from './Treac'
 import AudioControls from '../AudioControls/AudioControls'
 
-
-
 function Bar() {
     const [isOpenLoading, setIsOpenLoading] = useState(true)
 
@@ -24,21 +22,15 @@ function Bar() {
     const [trackProgress, setTrackProgress] = useState(0)
     const [isPlaying, setIsPlaying] = useState(false)
 
-    const { title, artist, audioSrc } = tracks[trackIndex]
+    const { title, artist, color, image, audioSrc } = tracks[trackIndex]
 
+    // Refs
     const audioRef = useRef(new Audio(audioSrc))
     const intervalRef = useRef()
-    const isReady = useRef(false)
+    const isReady = useState(false)
 
-    const { duration } = audioRef.current
-    const toPrevTrack = () => {
-        console.log('TODO go to prev')
-        if (trackIndex - 1 < 0) {
-            setTrackIndex(tracks.length - 1)
-        } else {
-            setTrackIndex(trackIndex - 1)
-        }
-    }
+    
+
     const toNextTrack = () => {
         console.log('TODO go to next')
         if (trackIndex < tracks.length - 1) {
@@ -75,7 +67,6 @@ function Bar() {
             isReady.current = true
         }
     }, [trackIndex])
-
     const startTimer = () => {
         clearInterval(intervalRef.current)
 
@@ -87,7 +78,6 @@ function Bar() {
             }
         }, [1000])
     }
-
     const onScrub = (value) => {
         clearInterval(intervalRef.current)
         audioRef.current.currentTime = value
@@ -99,25 +89,27 @@ function Bar() {
         }
         startTimer()
     }
+    // Destructure for conciseness
+    const { duration } = audioRef.current
+    const toPrevTrack = () => {
+        console.log('TODO go to prev')
+        if (trackIndex - 1 < 0) {
+            setTrackIndex(tracks.length - 1)
+        } else {
+            setTrackIndex(trackIndex - 1)
+        }
+    }
     const currentPercentage = duration
         ? `${(trackProgress / duration) * 100}%`
         : '0%'
     const trackStyling = `
-  -webkit-gradient(linear, 0% 0%, 100% 0%, color-stop(${currentPercentage}, #2e2e2e), color-stop(${currentPercentage}, #777))
+  -webkit-gradient(linear, 0% 0%, 100% 0%, color-stop(${currentPercentage}, #fff), color-stop(${currentPercentage}, #2e2e2e))
 `
     return (
         <S.Bar>
             <S.BarContent>
                 <S.BarPlayerProgress
-                    type="range"
-                    value={trackProgress}
-                    step="1"
-                    min="0"
-                    max={duration ? duration : `${duration}`}
-                    onChange={(e) => onScrub(e.target.value)}
-                    onMouseUp={onScrubEnd}
-                    onKeyUp={onScrubEnd}
-                    style={{ background: trackStyling }}
+                    style={styleProgress(trackStyling, trackProgress, duration,onScrubEnd,onScrub)}
                 />
                 <S.BarPlayerBlock>
                     <S.BarPlayer>
@@ -155,5 +147,19 @@ function Bar() {
         </S.Bar>
     )
 }
+// ,
 
+const styleProgress = (trackStyling, trackProgress, duration,onScrubEnd,onScrub) => {
+    return {
+        max: duration ? duration : `${duration}`,
+        onChange:((e) => onScrub(e.target.value)),
+        type: 'range',
+        value: trackProgress,
+        step: '1',
+        min: '0',
+        background: trackStyling,
+        onMouseUp: { onScrubEnd },
+        onKeyUp: { onScrubEnd },
+    }
+}
 export default Bar

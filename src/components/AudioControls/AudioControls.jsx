@@ -18,6 +18,7 @@ function AudioControls({
             <div onClick={onPrevClick}>
                 <Prev />
             </div>
+            
             {isPlaying ? (
                 <div onClick={() => onPlayPauseClick(false)}>
                     <Play />

@@ -2,14 +2,14 @@ export const tracks = [
     {
         title: 'Dropin',
         artist: 'Bobby Marlen',
-        audioSrc: "./test.mp3",
+        audioSrc: 'https://interactive-examples.mdn.mozilla.net/media/cc0-audio/t-rex-roar.mp3',
         image: '',
         color: '',
     },
     {
         title: 'Второй',
         artist: 'Артист',
-        audioSrc: '',
+        audioSrc: 'https://interactive-examples.mdn.mozilla.net/media/cc0-audio/t-rex-roar.mp3',
         image: '',
         color: '',
     },
