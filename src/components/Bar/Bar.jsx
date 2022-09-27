@@ -24,12 +24,9 @@ function Bar() {
 
     const { title, artist, color, image, audioSrc } = tracks[trackIndex]
 
-    // Refs
     const audioRef = useRef(new Audio(audioSrc))
     const intervalRef = useRef()
     const isReady = useState(false)
-
-    
 
     const toNextTrack = () => {
         console.log('TODO go to next')
@@ -89,7 +86,6 @@ function Bar() {
         }
         startTimer()
     }
-    // Destructure for conciseness
     const { duration } = audioRef.current
     const toPrevTrack = () => {
         console.log('TODO go to prev')
@@ -99,17 +95,12 @@ function Bar() {
             setTrackIndex(trackIndex - 1)
         }
     }
-    const currentPercentage = duration
-        ? `${(trackProgress / duration) * 100}%`
-        : '0%'
-    const trackStyling = `
-  -webkit-gradient(linear, 0% 0%, 100% 0%, color-stop(${currentPercentage}, #fff), color-stop(${currentPercentage}, #2e2e2e))
-`
+    
     return (
         <S.Bar>
             <S.BarContent>
                 <S.BarPlayerProgress
-                    style={styleProgress(trackStyling, trackProgress, duration,onScrubEnd,onScrub)}
+                    style={styleProgress(trackProgress, duration,onScrubEnd,onScrub)}
                 />
                 <S.BarPlayerBlock>
                     <S.BarPlayer>
@@ -147,19 +138,26 @@ function Bar() {
         </S.Bar>
     )
 }
-// ,
 
-const styleProgress = (trackStyling, trackProgress, duration,onScrubEnd,onScrub) => {
+const styleProgress = (trackProgress, duration,onScrubEnd,onScrub) => {
     return {
-        max: duration ? duration : `${duration}`,
+        max: duration,
         onChange:((e) => onScrub(e.target.value)),
         type: 'range',
         value: trackProgress,
         step: '1',
         min: '0',
-        background: trackStyling,
+        background: trackStyling(duration,trackProgress),
         onMouseUp: { onScrubEnd },
         onKeyUp: { onScrubEnd },
     }
+}
+const trackStyling=(duration,trackProgress)=>{
+    const currentPercentage = duration
+        ? `${(trackProgress / duration) * 100}%`
+        : '0%'
+    return `
+  -webkit-gradient(linear, 0% 0%, 100% 0%, color-stop(${currentPercentage}, #fff), color-stop(${currentPercentage}, #2e2e2e))
+`
 }
 export default Bar
