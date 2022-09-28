@@ -95,12 +95,22 @@ function Bar() {
             setTrackIndex(trackIndex - 1)
         }
     }
-    
+
     return (
         <S.Bar>
             <S.BarContent>
                 <S.BarPlayerProgress
-                    style={styleProgress(trackProgress, duration,onScrubEnd,onScrub)}
+                    max={duration}
+                    onChange={(e) => onScrub(e.target.value)}
+                    type="range"
+                    value={trackProgress}
+                    step="1"
+                    min="0"
+                    onMouseUp={onScrubEnd}
+                    onKeyUp={onScrubEnd}
+                    style={{
+                        background: trackStyling(duration, trackProgress),
+                    }}
                 />
                 <S.BarPlayerBlock>
                     <S.BarPlayer>
@@ -139,20 +149,7 @@ function Bar() {
     )
 }
 
-const styleProgress = (trackProgress, duration,onScrubEnd,onScrub) => {
-    return {
-        max: duration,
-        onChange:((e) => onScrub(e.target.value)),
-        type: 'range',
-        value: trackProgress,
-        step: '1',
-        min: '0',
-        background: trackStyling(duration,trackProgress),
-        onMouseUp: { onScrubEnd },
-        onKeyUp: { onScrubEnd },
-    }
-}
-const trackStyling=(duration,trackProgress)=>{
+const trackStyling = (duration, trackProgress) => {
     const currentPercentage = duration
         ? `${(trackProgress / duration) * 100}%`
         : '0%'
