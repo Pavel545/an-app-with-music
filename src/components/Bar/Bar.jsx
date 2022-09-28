@@ -36,6 +36,7 @@ function Bar() {
             setTrackIndex(0)
         }
     }
+
     useEffect(() => {
         if (isPlaying) {
             audioRef.current.play()
@@ -64,6 +65,7 @@ function Bar() {
             isReady.current = true
         }
     }, [trackIndex])
+    
     const startTimer = () => {
         clearInterval(intervalRef.current)
 
@@ -95,7 +97,6 @@ function Bar() {
             setTrackIndex(trackIndex - 1)
         }
     }
-
     return (
         <S.Bar>
             <S.BarContent>
