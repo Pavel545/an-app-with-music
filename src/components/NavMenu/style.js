@@ -9,9 +9,12 @@ export const MenuList = styled.ul`
 export const MenuItem = styled.li`
   padding: 5px 0;
   margin-bottom: 16px;
+  list-style-type: none;
 `;
 export const menuLink = styled.a`
 color: #ffffff;
   font-weight: 400;
   font-size: 16px;
-  line-height: 24px;`;
+  line-height: 24px;
+  text-decoration: none;
+  `;
