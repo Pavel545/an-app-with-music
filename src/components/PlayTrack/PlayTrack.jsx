@@ -1,7 +1,7 @@
 import TrackPlay from '../TrackPlay/TrackPlay'
 import PlayerBtn from '../PlayerBtn/PlayerBtn'
 
-function PlayTrack() {
+function PlayTrack(props) {
     return (
         <div className="player__track-play track-play">
             <div className="track-play__contain">
@@ -14,12 +14,12 @@ function PlayTrack() {
                 <TrackPlay
                     name="track-play__autho"
                     aName="track-play__author-link"
-                    text="Ты та..."
+                    text= {props.autho}
                 />
                 <TrackPlay
                     name="track-play__album"
                     aName="track-play__album-link"
-                    text="Баста"
+                    text={props.album}
                 />
             </div>
 

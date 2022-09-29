@@ -1,3 +1,4 @@
+
 function PlayerBtn(params) {
     <div className={params.name}>
         <svg className={params.svgName} alt={params.alt}>
