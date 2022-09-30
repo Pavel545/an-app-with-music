@@ -8,10 +8,13 @@ import React from 'react'
 import * as Window from '../Pop-upWindow/Window'
 import * as Loading from '../Loaging/Loading'
 import Item from '../Playlistltem/PlaylistItem'
+import { useThemeContext } from '../../context/theme'
 
 import { useState, useEffect } from 'react'
 
 function Main() {
+    const { toggleTheme, theme } = useThemeContext()
+
     const [isOpenAuthor, setIsOpenAuthor] = useState(false)
     const toggleAuthor = () => {
         setIsOpenAuthor(!isOpenAuthor)
@@ -41,8 +44,8 @@ function Main() {
     })
 
     return (
-        <S.Main>
-            <S.MainNav>
+        <S.Main style={{ background: theme.background, color: theme.color }}>
+            <S.MainNav style={{ background: theme.backgroundNavMenu }}>
                 <S.NavLogo>
                     <S.LogoImage src="my-app/public/img/logo.png" alt="logo" />
                 </S.NavLogo>
@@ -53,16 +56,27 @@ function Main() {
                 <S.CenterblockH2>Треки</S.CenterblockH2>
                 <S.CenterBlockFilter>
                     <S.FilterTitle>Искать по:</S.FilterTitle>
-                    <S.FilterButton onClick={toggleAuthor}>
+                    <S.FilterButton
+                        style={{ borderColor: theme.color }}
+                        onClick={toggleAuthor}
+                    >
                         исполнителю
                     </S.FilterButton>
                     {isOpenAuthor && <Window.AuthorWindow />}
 
-                    <S.FilterButton onClick={toggleYear}>
+                    <S.FilterButton
+                        style={{ borderColor: theme.color }}
+                        onClick={toggleYear}
+                    >
                         году выпуска
                     </S.FilterButton>
                     {isOpenYear && <Window.YearWindow />}
-                    <S.FilterButton onClick={toggleGenre}>жанру</S.FilterButton>
+                    <S.FilterButton
+                        style={{ borderColor: theme.color }}
+                        onClick={toggleGenre}
+                    >
+                        жанру
+                    </S.FilterButton>
                     {isOpenGenre && <Window.GenreWindow />}
                 </S.CenterBlockFilter>
                 <S.CenterblockContent>

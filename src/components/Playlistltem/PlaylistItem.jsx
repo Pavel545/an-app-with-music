@@ -1,3 +1,4 @@
+import { useThemeContext } from '../../context/theme'
 import * as S from './style'
 
 function Item() {
@@ -73,23 +74,55 @@ function Item() {
     )
 }
 function PlaylistItem(props) {
+    const { theme } = useThemeContext()
     return (
         <S.PlaylistItem>
             <S.PlaylistTrack>
                 <S.TrackTitle>
-                    <S.TrackTitleImage>
+                    <S.TrackTitleImage style={{ background: theme.colorIcon }}>
                         <S.TrackTitleSvg alt="music">
-                            <use xlinkHref="img/icon/sprite.svg#icon-note" />
+                            <svg
+                                width="20"
+                                height="19"
+                                viewBox="0 0 20 19"
+                                fill="none"
+                                xmlns="http://www.w3.org/2000/svg"
+                            >
+                                <path
+                                    d="M8 15.751V1.72067L19 0.750977V12.751"
+                                    stroke={theme.color}
+                                />
+                                <ellipse
+                                    cx="4.5"
+                                    cy="15.751"
+                                    rx="3.5"
+                                    ry="2"
+                                    stroke={theme.color}
+                                />
+                                <ellipse
+                                    cx="15.5"
+                                    cy="12.751"
+                                    rx="3.5"
+                                    ry="2"
+                                    stroke={theme.color}
+                                />
+                            </svg>
                         </S.TrackTitleSvg>
                     </S.TrackTitleImage>
                     <div className="track__title-text">
-                        <S.TrackTitleLink href="http://">
+                        <S.TrackTitleLink
+                            style={{ color: theme.color }}
+                            href="http://"
+                        >
                             {props.name} <S.TrackTitleSpan />
                         </S.TrackTitleLink>
                     </div>
                 </S.TrackTitle>
                 <S.TrackAuthor>
-                    <S.TrackAuthorLink href="http://">
+                    <S.TrackAuthorLink
+                        style={{ color: theme.color }}
+                        href="http://"
+                    >
                         {props.executor}
                     </S.TrackAuthorLink>
                 </S.TrackAuthor>

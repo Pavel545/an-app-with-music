@@ -80,11 +80,15 @@ export const VolumeContent = styled.div`
     justify-content: end;
 }`;
 export const VolumeProgress = styled.div`
-width: 109px;
+width: 150px;
 
 }`;
 export const VolumeProgressLine = styled.input`
-width: 109px;
+width: 80px;
+height: 0px;
+color:#FFFFFF;
+border: 2px solid ;
+background-color: transparent;
 }`;
 
 export const PlayerTrackPlay = styled.input`
