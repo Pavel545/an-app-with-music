@@ -22,7 +22,7 @@ function Content() {
     <ThemeContext.Provider value={{theme : currentTheme, toggleTheme}}>
       <S.Wrapper>
       <S.Container  >
-        <AppRoutes user={true}/>
+        <AppRoutes user={false}/>
       </S.Container>
     </S.Wrapper>
     </ThemeContext.Provider>

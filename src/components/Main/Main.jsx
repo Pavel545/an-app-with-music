@@ -11,6 +11,11 @@ import Item from '../Playlistltem/PlaylistItem'
 import { useThemeContext } from '../../context/theme'
 
 import { useState, useEffect } from 'react'
+import request from '../Request/request'
+
+const allTrack = 'http://51.250.95.23:8000/catalog/track/all/'
+window.PlAll=[]
+
 
 function Main() {
     const { toggleTheme, theme } = useThemeContext()
@@ -38,10 +43,23 @@ function Main() {
         setIsOpenLoading(false)
     }
     useEffect(() => {
-        const intervalId = setTimeout(finishLoading, 2000)
+        request({
+            url: allTrack,
+            onSuccess: (event) => {
+                
+                finishLoading()
+                
+                window.PlAll=event.results
+    
+                console.log(window.PlAll)
 
-        return () => clearTimeout(intervalId)
+    
+            },
+            
+        })
     })
+    
+    
 
     return (
         <S.Main style={{ background: theme.background, color: theme.color }}>
@@ -81,7 +99,7 @@ function Main() {
                 </S.CenterBlockFilter>
                 <S.CenterblockContent>
                     <PlaylistTitle />
-                    {isOpenLoading ? <Loading.LoadingPly /> : <Item />}
+                    {isOpenLoading ? <Loading.LoadingPly /> : <Item mass={window.PlAll} />}
                 </S.CenterblockContent>
             </S.MainCenterBlock>
             {isOpenLoading ? <Loading.SidebarLoad /> : <Sidebar />}
