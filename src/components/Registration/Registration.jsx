@@ -1,9 +1,9 @@
 import { useRef } from 'react'
 import { NavLink } from 'react-router-dom'
+import { SKY_PRO_BACK_SIGNUP } from '../Constants/constants'
 import request from '../Request/request'
 import * as S from './style'
 
-const skyproBeck = 'http://51.250.95.23:8000/user/signup/'
 
 const user = {
     username: 'string',
@@ -26,7 +26,7 @@ export const RegistrationWindow = ({}) => {
 
             request({
                 method: 'POST',
-                url: skyproBeck + user,
+                url: SKY_PRO_BACK_SIGNUP + user,
                 onSuccess: (event) => {
                     console.log(event)
                 },
