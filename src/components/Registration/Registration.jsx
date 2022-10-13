@@ -1,6 +1,6 @@
 import { useRef } from 'react'
 import { NavLink } from 'react-router-dom'
-import { SKY_PRO_BACK_SIGNUP } from '../Constants/constants'
+import { SKY_PRO_BACK_SIGNUP } from '../constans/constants'
 import request from '../Request/request'
 import * as S from './style'
 

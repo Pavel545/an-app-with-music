@@ -1,25 +1,21 @@
-import { useEffect } from 'react';
+import { useEffect } from 'react'
 import { useThemeContext } from '../../context/theme'
-import request from '../Request/request'
 import * as S from './style'
 
-
-
 function Item(props) {
-    console.log(props.mass);
-    
+    console.log(props.mass)
+
     return (
         <S.ContentPlaylist>
-            {props.mass.map((element,index) =>(
-                <PlaylistItem 
-                key ={index}
-                name={element.name}
-                executor={element.author}
-                album={element.album}
-                time={element.duration_in_seconds}
-            />
+            {props.mass.map((element, index) => (
+                <PlaylistItem
+                    key={index}
+                    name={element.name}
+                    executor={element.author}
+                    album={element.album}
+                    time={element.duration_in_seconds}
+                />
             ))}
-            
         </S.ContentPlaylist>
     )
 }

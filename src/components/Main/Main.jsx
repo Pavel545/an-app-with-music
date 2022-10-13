@@ -12,9 +12,9 @@ import { useThemeContext } from '../../context/theme'
 
 import { useState, useEffect } from 'react'
 import request from '../Request/request'
+import { useGetAllTrackQuery } from '../../servises/todo'
 
-const allTrack = 'http://51.250.95.23:8000/catalog/track/all/'
-window.PlAll=[]
+
 
 
 function Main() {
@@ -38,28 +38,15 @@ function Main() {
         setIsOpenAuthor(false)
         setIsOpenYear(false)
     }
-    const [isOpenLoading, setIsOpenLoading] = useState(true)
-    const finishLoading = () => {
-        setIsOpenLoading(false)
-    }
-    useEffect(() => {
-        request({
-            url: allTrack,
-            onSuccess: (event) => {
-                
-                finishLoading()
-                
-                window.PlAll=event.results
     
-                console.log(window.PlAll)
+    
+    const {data, error, isLauding} = useGetAllTrackQuery()
+    useEffect(
+        console.log(error),
+        console.log(data),
+        console.log(isLauding)
 
-    
-            },
-            
-        })
-    })
-    
-    
+    )
 
     return (
         <S.Main style={{ background: theme.background, color: theme.color }}>
@@ -99,10 +86,10 @@ function Main() {
                 </S.CenterBlockFilter>
                 <S.CenterblockContent>
                     <PlaylistTitle />
-                    {isOpenLoading ? <Loading.LoadingPly /> : <Item mass={window.PlAll} />}
+                    {isLauding ? <Loading.LoadingPly /> : <Item mass ={data}/>}
                 </S.CenterblockContent>
             </S.MainCenterBlock>
-            {isOpenLoading ? <Loading.SidebarLoad /> : <Sidebar />}
+            {isLauding ? <Loading.SidebarLoad /> : <Sidebar />}
         </S.Main>
     )
 }
