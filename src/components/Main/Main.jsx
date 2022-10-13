@@ -41,6 +41,8 @@ function Main() {
     
     
     const {data, error, isLauding} = useGetAllTrackQuery()
+    const isGo = !isLauding && ! data?.length;
+
     useEffect(
         console.log(error),
         console.log(data),
@@ -86,10 +88,10 @@ function Main() {
                 </S.CenterBlockFilter>
                 <S.CenterblockContent>
                     <PlaylistTitle />
-                    {isLauding ? <Loading.LoadingPly /> : <Item mass ={data}/>}
+                    {isGo ? <Loading.LoadingPly /> : <Item mass ={data}/>}
                 </S.CenterblockContent>
             </S.MainCenterBlock>
-            {isLauding ? <Loading.SidebarLoad /> : <Sidebar />}
+            {isGo ? <Loading.SidebarLoad /> : <Sidebar />}
         </S.Main>
     )
 }
