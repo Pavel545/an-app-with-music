@@ -1,19 +1,18 @@
 import { useRef } from 'react'
 import { NavLink } from 'react-router-dom'
-import { SKY_PRO_BACK_SIGNUP } from '../constans/constants'
-import request from '../Request/request'
+import { usePostSignupMutation } from '../../servises/serv'
 import * as S from './style'
-
 
 const user = {
     username: 'string',
-    email:'avraa00@mail.ru',
+    email: 'avraa00@mail.ru',
     password: 'string',
 }
 export const RegistrationWindow = ({}) => {
     const logRef = useRef(null)
     const passRef = useRef(null)
     const repPassRef = useRef(null)
+    const [signup, { isLoading }] = usePostSignupMutation()
 
     function reg(log, pas, repPas) {
         if (
@@ -23,14 +22,8 @@ export const RegistrationWindow = ({}) => {
         ) {
             user.username = log
             user.password = pas
-
-            request({
-                method: 'POST',
-                url: SKY_PRO_BACK_SIGNUP + user,
-                onSuccess: (event) => {
-                    console.log(event)
-                },
-            })
+            signup(user)
+            console.log(user)
         }
     }
     return (
@@ -46,12 +39,11 @@ export const RegistrationWindow = ({}) => {
                 placeholder="Повторите пароль"
                 type={'password'}
             ></S.Input>
-
-            <S.Registration onClick={reg(logRef, passRef, repPassRef)}>
-                <NavLink to="/">
+            <NavLink to="/">
+                <S.Registration onClick={reg(logRef, passRef, repPassRef)}>
                     <S.RegistrationText>Зарегистрироватся</S.RegistrationText>{' '}
-                </NavLink>
-            </S.Registration>
+                </S.Registration>
+            </NavLink>
         </S.WindowLogIn>
     )
 }

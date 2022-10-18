@@ -7,7 +7,7 @@ function Item(props) {
 
     return (
         <S.ContentPlaylist>
-            {props.mass.map((element, index) => (
+            {props.mass.results.map((element, index) => (
                 <PlaylistItem
                     key={index}
                     name={element.name}

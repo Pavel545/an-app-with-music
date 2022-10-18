@@ -11,11 +11,7 @@ import Item from '../Playlistltem/PlaylistItem'
 import { useThemeContext } from '../../context/theme'
 
 import { useState, useEffect } from 'react'
-import request from '../Request/request'
-import { useGetAllTrackQuery } from '../../servises/todo'
-
-
-
+import { useGetAllTrackQuery } from '../../servises/serv'
 
 function Main() {
     const { toggleTheme, theme } = useThemeContext()
@@ -38,17 +34,13 @@ function Main() {
         setIsOpenAuthor(false)
         setIsOpenYear(false)
     }
-    
-    
-    const {data, error, isLauding} = useGetAllTrackQuery()
-    const isGo = !isLauding && ! data?.length;
 
-    useEffect(
-        console.log(error),
-        console.log(data),
-        console.log(isLauding)
+    const { data, error, isLauding } = useGetAllTrackQuery()
+    
 
-    )
+    console.log(data)
+    console.log(isLauding)
+
 
     return (
         <S.Main style={{ background: theme.background, color: theme.color }}>
@@ -88,10 +80,10 @@ function Main() {
                 </S.CenterBlockFilter>
                 <S.CenterblockContent>
                     <PlaylistTitle />
-                    {isGo ? <Loading.LoadingPly /> : <Item mass ={data}/>}
+                    {(data == undefined) ? <Loading.LoadingPly /> : <Item mass={data} />}
                 </S.CenterblockContent>
             </S.MainCenterBlock>
-            {isGo ? <Loading.SidebarLoad /> : <Sidebar />}
+            {(data == undefined) ? <Loading.SidebarLoad /> : <Sidebar />}
         </S.Main>
     )
 }

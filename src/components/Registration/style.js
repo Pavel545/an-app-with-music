@@ -44,19 +44,23 @@ export const Registration = styled.button`
     border: 1px solid #d0cece;
     border-radius: 6px;
     text-decoration: none;
-    
-text-decoration: none
+    &:hover {
+        color: #3f007d;
+    }
+    &:active {
+        color: #271a58;
+    }
 `
 export const RegistrationText = styled.p`
-font-family: 'StratosSkyeng';
-font-style: normal;
-font-weight: 400;
-font-size: 18px;
-line-height: 1px;
-letter-spacing: -0.05px;
-font-feature-settings: 'pnum' on, 'lnum' on;
+    font-family: 'StratosSkyeng';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 1px;
+    letter-spacing: -0.05px;
+    font-feature-settings: 'pnum' on, 'lnum' on;
 
-color: #000000;
+    color: #000000;
 `
 export const Input = styled.input`
     padding-left: 15px;
@@ -72,6 +76,6 @@ export const Input = styled.input`
     letter-spacing: -0.05px;
     font-feature-settings: 'pnum' on, 'lnum' on;
     color: #000000;
-    border-bottom: 1px solid #D0CECE;
+    border-bottom: 1px solid #d0cece;
     padding-top: 40px;
 `

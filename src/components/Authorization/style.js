@@ -13,7 +13,7 @@ export const WindowLogIn = styled.div`
     align-items: center;
     gap: 32px;
     justify-content: center;
-}
+
 `
 export const ButtonLogIn = styled.button`
     width: 278px;
@@ -22,6 +22,12 @@ export const ButtonLogIn = styled.button`
     top: 268px;
     background: #580ea2;
     border-radius: 6px;
+    &:hover {
+        color: #3f007d;
+    }
+    &:active {
+        color: #271a58;
+    }
 `
 export const LinkText = styled.p`
     font-family: 'StratosSkyeng';
@@ -41,6 +47,12 @@ export const Registration = styled.button`
     border: 1px solid #d0cece;
     border-radius: 6px;
     text-decoration: none;
+    &:hover {
+        color: #D0CECE;
+    }
+    &:active {
+        color: #D0CECE;
+    }
 `
 export const RegistrationText = styled.p`
     font-family: 'StratosSkyeng';
