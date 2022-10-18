@@ -4,9 +4,11 @@ import { usePostSignupMutation } from '../../servises/serv'
 import * as S from './style'
 
 const user = {
-    username: 'string',
+    username: '',
+    first_name: '',
+    last_name: '',
     email: 'avraa00@mail.ru',
-    password: 'string',
+    password: '',
 }
 export const RegistrationWindow = ({}) => {
     const logRef = useRef(null)
@@ -14,14 +16,18 @@ export const RegistrationWindow = ({}) => {
     const repPassRef = useRef(null)
     const [signup, { isLoading }] = usePostSignupMutation()
 
-    function reg(log, pas, repPas) {
+    function reg() {
+        const inputLog = logRef.current
+        const inputPass = passRef.current
+        const inputRepPass = repPassRef.current
+
         if (
-            log.value !== '' &&
-            pas.value === repPas.value &&
-            pas.value !== ''
+            inputLog.value !== '' &&
+            inputPass.value === inputRepPass.value &&
+            inputPass.value !== ''
         ) {
-            user.username = log
-            user.password = pas
+            user.username = logRef.value
+            user.password = inputPass.value
             signup(user)
             console.log(user)
         }
@@ -40,7 +46,7 @@ export const RegistrationWindow = ({}) => {
                 type={'password'}
             ></S.Input>
             <NavLink to="/">
-                <S.Registration onClick={reg(logRef, passRef, repPassRef)}>
+                <S.Registration onClick={reg}>
                     <S.RegistrationText>Зарегистрироватся</S.RegistrationText>{' '}
                 </S.Registration>
             </NavLink>

@@ -7,16 +7,20 @@ import * as S from './style'
 export const Authorization = ({ user, onAuthButtonClick }) => {
     const logRef = useRef(null)
     const passRef = useRef(null)
-    let log = {
+    const log = {
         email: 'avraa00@mail.ru',
         password: 'string',
     }
-    function logBec(logRef, passRef) {
+    const logBec = () => {
         onAuthButtonClick()
         if (logRef !== '' && passRef !== '') {
-            log.username = logRef
-            log.password = passRef
+            const inputElement = logRef.current;
+            const inputElement2 = passRef.current;
+
+            log.username = inputElement.value 
+            log.password = inputElement2.value
             login(log)
+            console.log(logRef.value);
         }
     }
 
@@ -30,7 +34,7 @@ export const Authorization = ({ user, onAuthButtonClick }) => {
                 type="password"
             ></S.Input>
             <NavLink to="/content">
-                <S.ButtonLogIn onClick={logBec(logRef, passRef)}>
+                <S.ButtonLogIn onClick={logBec}>
                     <S.LinkText>Войти</S.LinkText>{' '}
                 </S.ButtonLogIn>
             </NavLink>
