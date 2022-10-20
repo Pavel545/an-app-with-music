@@ -1,30 +1,36 @@
+import { useState } from 'react'
 import { useEffect } from 'react'
 import { useRef } from 'react'
 import { NavLink } from 'react-router-dom'
 import { usePostLoginMutation } from '../../servises/serv'
 import * as S from './style'
 
-export const Authorization = ({ user, onAuthButtonClick }) => {
+export const Authorization = ({onAuthButtonClick }) => {
+
     const logRef = useRef(null)
     const passRef = useRef(null)
     const log = {
+        username: 'string',
         email: 'avraa00@mail.ru',
         password: 'string',
     }
     const logBec = () => {
-        onAuthButtonClick()
         if (logRef !== '' && passRef !== '') {
-            const inputElement = logRef.current;
-            const inputElement2 = passRef.current;
+            const inputLogin = logRef.current;
+            const inputPassword = passRef.current;
 
-            log.username = inputElement.value 
-            log.password = inputElement2.value
-            login(log)
-            console.log(logRef.value);
+            log.username = inputLogin.value 
+            log.password = inputPassword.value
+            
+            onAuthButtonClick(log)
+            
         }
-    }
+        
+        
 
-    const [login, { isLoading }] = usePostLoginMutation()
+    }
+    
+
     return (
         <S.WindowLogIn>
             <S.Input ref={logRef} placeholder="Логин" type="text"></S.Input>

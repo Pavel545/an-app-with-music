@@ -8,20 +8,23 @@ export const skyProBack = createApi({
     endpoints: (builder) => ({
         postLogin: builder.mutation({
             query: (body) => ({
-                url: `user/login/${body}`,
+                url: `user/login/?username=${body.username}&password=${body.password}`,
                 method: 'POST',
                 body,
             }),
         }),
         postSignup: builder.mutation({
             query: (body) => ({
-                url: `user/signup/${body}`,
+                url: `user/signup/?username=${body.username}&email=${body.email}password=${body.password}`,
                 method: 'POST',
                 body,
             }),
         }),
         getAllTrack: builder.query({
             query: () => 'catalog/track/all',
+        }),
+        getIdTrack: builder.query({
+            query: (body) => 'catalog/track/'+body,
         }),
     }),
 })
@@ -30,4 +33,5 @@ export const {
     usePostLoginMutation,
     usePostSignupMutation,
     useGetAllTrackQuery,
+    useGetIdTrackQuery,
 } = skyProBack

@@ -1,19 +1,23 @@
-import { useEffect } from 'react'
+import { useEffect, useRef } from 'react'
 import { useThemeContext } from '../../context/theme'
+import Bar from '../Bar/Bar'
 import * as S from './style'
 
 function Item(props) {
     console.log(props.mass)
-
+    
     return (
         <S.ContentPlaylist>
             {props.mass.results.map((element, index) => (
-                <PlaylistItem
+                <PlaylistItem 
+                    id = {element.id}
                     key={index}
                     name={element.name}
                     executor={element.author}
                     album={element.album}
                     time={element.duration_in_seconds}
+                    track_file={element.track_file}
+                    setSrc={props.setSrc}
                 />
             ))}
         </S.ContentPlaylist>
@@ -21,8 +25,12 @@ function Item(props) {
 }
 function PlaylistItem(props) {
     const { theme } = useThemeContext()
+    function choice() {
+        console.log(props.track_file);
+        props.setSrc(props)
+    }
     return (
-        <S.PlaylistItem>
+        <S.PlaylistItem onClick={choice}>
             <S.PlaylistTrack>
                 <S.TrackTitle>
                     <S.TrackTitleImage style={{ background: theme.colorIcon }}>

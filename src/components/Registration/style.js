@@ -5,7 +5,7 @@ export const WindowLogIn = styled.div`
     width: 366px;
     height: 439px;
     left: 777px;
-    top: 320.5px;
+    top: 320px;
 
     background: #ffffff;
     border-radius: 12px;
