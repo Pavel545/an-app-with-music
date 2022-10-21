@@ -23,8 +23,15 @@ export const skyProBack = createApi({
         getAllTrack: builder.query({
             query: () => 'catalog/track/all',
         }),
-        getIdTrack: builder.query({
-            query: (body) => 'catalog/track/'+body,
+        getIdTrack: builder.query<"string">({
+            query: (id) => `catalog/track/${id}`,
+        }),
+        postFavourites: builder.mutation({
+            query: (body) => ({
+                url: `/catalog/track/${body}/favorite/`,
+                method: 'POST',
+                body,
+            }),
         }),
     }),
 })
@@ -34,4 +41,5 @@ export const {
     usePostSignupMutation,
     useGetAllTrackQuery,
     useGetIdTrackQuery,
+    usePostFavouritesQuery,
 } = skyProBack

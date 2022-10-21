@@ -1,5 +1,6 @@
 import { useEffect, useRef } from 'react'
 import { useThemeContext } from '../../context/theme'
+import { usePostFavouritesQuery } from '../../servises/serv'
 import Bar from '../Bar/Bar'
 import * as S from './style'
 
@@ -24,10 +25,15 @@ function Item(props) {
     )
 }
 function PlaylistItem(props) {
+    const [favourites, { isLoading }] = usePostFavouritesQuery()
     const { theme } = useThemeContext()
     function choice() {
         console.log(props.track_file);
         props.setSrc(props)
+    }
+    function like() {
+    
+        favourites(props.id)
     }
     return (
         <S.PlaylistItem onClick={choice}>
@@ -86,7 +92,7 @@ function PlaylistItem(props) {
                     </S.TrackAlbumLink>
                 </S.TrackAlbum>
                 <div className="track__time">
-                    <S.TrackTimeSvg alt="time">
+                    <S.TrackTimeSvg onClick={like}  alt="time">
                         <use xlinkHref="img/icon/sprite.svg#icon-like"></use>
                     </S.TrackTimeSvg>
                     <S.TrackTimeText>{props.time}</S.TrackTimeText>

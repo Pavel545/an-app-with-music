@@ -6,11 +6,13 @@ import PlayTrack from '../PlayTrack/PlayTrack'
 import { useState, useEffect, useRef } from 'react'
 import AudioControls from '../AudioControls/AudioControls'
 import { useThemeContext } from '../../context/theme'
+import { useGetIdTrackQuery } from '../../servises/serv'
 
 
 function Bar(props) {
     console.log(props);
     const { theme } = useThemeContext()
+    // const { data, error, isLauding } = useGetIdTrackQuery(props.song.id)
 
     const [isOpenLoading, setIsOpenLoading] = useState(true)
 

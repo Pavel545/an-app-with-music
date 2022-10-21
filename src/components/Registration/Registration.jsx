@@ -8,7 +8,7 @@ const user = {
     email: 'avraa00@mail.ru',
     password: 'string',
 }
-export const RegistrationWindow = ({}) => {
+export const RegistrationModal = ({}) => {
     const [signup, { isLoading }] = usePostSignupMutation()
     const logRef = useRef(null)
     const passRef = useRef(null)

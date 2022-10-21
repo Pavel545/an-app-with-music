@@ -9,7 +9,7 @@ export const Authorization = ({onAuthButtonClick }) => {
 
     const logRef = useRef(null)
     const passRef = useRef(null)
-    const log = {
+    const login = {
         username: 'string',
         email: 'avraa00@mail.ru',
         password: 'string',
@@ -19,10 +19,10 @@ export const Authorization = ({onAuthButtonClick }) => {
             const inputLogin = logRef.current;
             const inputPassword = passRef.current;
 
-            log.username = inputLogin.value 
-            log.password = inputPassword.value
+            login.username = inputLogin.value 
+            login.password = inputPassword.value
             
-            onAuthButtonClick(log)
+            onAuthButtonClick(login)
             
         }
         
