@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react'
 import { useThemeContext } from '../../context/theme'
-import { usePostFavouritesQuery } from '../../servises/serv'
+import { usePostLikeMutation } from '../../servises/serv'
 import Bar from '../Bar/Bar'
 import * as S from './style'
 
@@ -25,15 +25,14 @@ function Item(props) {
     )
 }
 function PlaylistItem(props) {
-    const [favourites, { isLoading }] = usePostFavouritesQuery()
+    const [data, { isLoading }] = usePostLikeMutation()
     const { theme } = useThemeContext()
     function choice() {
         console.log(props.track_file);
         props.setSrc(props)
     }
     function like() {
-    
-        favourites(props.id)
+        data(props.id)
     }
     return (
         <S.PlaylistItem onClick={choice}>

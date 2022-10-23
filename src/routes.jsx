@@ -6,23 +6,39 @@ import { RegistrationModal } from './components/Registration/Registration'
 import { Authorization } from './components/Authorization/Authorization'
 import { usePostLoginMutation } from './servises/serv'
 import { useState } from 'react'
+import { useEffect } from 'react'
 
 export const AppRoutes = () => {
-    const [login, { error }] = usePostLoginMutation()
+    const [login, { error, isLoading }] = usePostLoginMutation()
 
     const [user, setUser] = useState(false)
 
     function log(params) {
         login(params)
-        console.log(error)
+        console.log(isLoading)
         {
-            if (error === undefined){
-                 setUser(true)
-            }else{
-                 setUser(false)
-            }
+            // if (error === undefined) {
+            //     return setUser(false)
+
+            // } else {
+            //     return setUser(true)
+
+            // }
         }
     }
+    useEffect(() => {
+        if (isLoading ===false){
+            if (error === undefined) {
+                return setUser(true)
+    
+    
+            } else {
+                return setUser(false)
+    
+            }
+        }
+        
+    })
     return (
         <Routes>
             <Route

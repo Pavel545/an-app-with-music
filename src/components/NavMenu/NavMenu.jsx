@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { NavLink } from 'react-router-dom'
 import { useThemeContext } from '../../context/theme'
 import * as S from './style'
 
@@ -10,8 +11,10 @@ function NavMenu() {
     }
     const { toggleTheme, theme } = useThemeContext()
     return (
-        <S.NavMenu style={{ background: theme.backgroundNavMenu, color: theme.color }}>
-            <S.MenuList >
+        <S.NavMenu
+            style={{ background: theme.backgroundNavMenu, color: theme.color }}
+        >
+            <S.MenuList>
                 <S.MenuItem>
                     <S.menuLink
                         style={{
@@ -33,14 +36,16 @@ function NavMenu() {
                     </S.menuLink>
                 </S.MenuItem>
                 <S.MenuItem>
-                    <S.menuLink
-                        style={{
-                            color: theme.color,
-                        }}
-                        href="http://"
-                    >
-                        Войти
-                    </S.menuLink>
+                    
+                    <NavLink to="/">
+                        <S.menuLink
+                            style={{
+                                color: theme.color,
+                            }}
+                        >
+                            Выйти
+                        </S.menuLink>
+                    </NavLink>
                 </S.MenuItem>
                 <S.MenuItem>
                     {isTheme ? (
