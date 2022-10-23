@@ -9,26 +9,18 @@ import { useState } from 'react'
 import { useEffect } from 'react'
 
 export const AppRoutes = () => {
-    const [login, { error, isLoading }] = usePostLoginMutation()
+    const [data, { error, isLoading }] = usePostLoginMutation()
 
     const [user, setUser] = useState(false)
 
-    function log(params) {
-        login(params)
+    function login(params) {
+        data(params)
         console.log(isLoading)
-        {
-            // if (error === undefined) {
-            //     return setUser(false)
-
-            // } else {
-            //     return setUser(true)
-
-            // }
-        }
+        
     }
     useEffect(() => {
-        if (isLoading ===false){
-            if (error === undefined) {
+        if (!isLoading){
+            if (!error ) {
                 return setUser(true)
     
     
@@ -43,7 +35,7 @@ export const AppRoutes = () => {
         <Routes>
             <Route
                 path="/"
-                element={<Authorization onAuthButtonClick={log} />}
+                element={<Authorization onAuthButtonClick={login} />}
             />
             <Route path="/registration" element={<RegistrationModal />} />
 

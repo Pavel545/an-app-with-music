@@ -16,35 +16,35 @@ function NavMenu() {
         >
             <S.MenuList>
                 <S.MenuItem>
-                    <S.menuLink
+                    <S.MenuLink
                         style={{
                             color: theme.color,
                         }}
                         href="http://"
                     >
                         Главное
-                    </S.menuLink>
+                    </S.MenuLink>
                 </S.MenuItem>
                 <S.MenuItem>
-                    <S.menuLink
+                    <S.MenuLink
                         style={{
                             color: theme.color,
                         }}
                         href="http://"
                     >
                         Мой плейлист
-                    </S.menuLink>
+                    </S.MenuLink>
                 </S.MenuItem>
                 <S.MenuItem>
                     
                     <NavLink to="/">
-                        <S.menuLink
+                        <S.MenuLink
                             style={{
                                 color: theme.color,
                             }}
                         >
                             Выйти
-                        </S.menuLink>
+                        </S.MenuLink>
                     </NavLink>
                 </S.MenuItem>
                 <S.MenuItem>

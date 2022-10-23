@@ -8,21 +8,21 @@ export const skyProBack = createApi({
     endpoints: (builder) => ({
         postLogin: builder.mutation({
             query: (body) => ({
-                url: `user/login/?username=${body.username}&password=${body.password}`,
+                url: `user/login/`,
                 method: 'POST',
                 body,
             }),
         }),
         postSignup: builder.mutation({
             query: (body) => ({
-                url: `user/signup/?username=${body.username}&email=${body.email}password=${body.password}`,
+                url: `user/signup/`,
                 method: 'POST',
                 body,
             }),
         }),
         postLike: builder.mutation({
             query: (body) => ({
-                url: `/catalog/track/id:${body}/favorite/`,
+                url: `/catalog/track/{id}/favorite` ,
                 method: 'POST',
                 body,
             }),
