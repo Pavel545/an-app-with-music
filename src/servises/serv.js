@@ -21,17 +21,24 @@ export const skyProBack = createApi({
             }),
         }),
         postLike: builder.mutation({
-            query: (body) => ({
-                url: `/catalog/track/{id}/favorite` ,
+            query: (id) => ({
+                url: `/catalog/track/${id}/favorite` ,
                 method: 'POST',
-                body,
+                
             }),
         }),
         getAllTrack: builder.query({
             query: () => 'catalog/track/all',
         }),
         getIdTrack: builder.query({
-            query: (id) => `catalog/track/${id}`,
+            query: (arg) => {
+                const { id } = arg;
+                console.log('arg: ', arg);
+                return {
+                  url: 'catalog/track/',
+                  params: { id },
+                };
+              },
         }),
         
     }),
