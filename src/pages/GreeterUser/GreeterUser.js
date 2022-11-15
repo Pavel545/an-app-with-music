@@ -3,7 +3,7 @@ import { Authorization } from '../../components/Authorization/Authorization'
 
 function GreeterUser() {
     const [user, setUser] = useState(null)
-    const handleLogin = () => setUser({ login: 'taradam' })
+    const handleLogin = () => setUser(true)
     const handleLogout = () => setUser(null)
 
     return (

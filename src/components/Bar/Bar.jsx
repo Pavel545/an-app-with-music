@@ -4,12 +4,15 @@ import PlayerBtn from '../PlayerBtn/PlayerBtn'
 import * as S from './style'
 import PlayTrack from '../PlayTrack/PlayTrack'
 import { useState, useEffect, useRef } from 'react'
-import { tracks } from './Treac'
 import AudioControls from '../AudioControls/AudioControls'
 import { useThemeContext } from '../../context/theme'
+import { useGetIdTrackQuery } from '../../servises/serv'
 
-function Bar() {
+
+function Bar(props) {
+    console.log(props);
     const { theme } = useThemeContext()
+    // const { data, error, isLauding } = useGetIdTrackQuery(props.song.id)
 
     const [isOpenLoading, setIsOpenLoading] = useState(true)
 
@@ -25,15 +28,18 @@ function Bar() {
     const [trackProgress, setTrackProgress] = useState(0)
     const [isPlaying, setIsPlaying] = useState(false)
 
-    const { title, artist, color, image, audioSrc } = tracks[trackIndex]
-
-    const audioRef = useRef(new Audio(audioSrc))
+    const {album, author,name,track_file
+     } = props.data.results[trackIndex]
+    
+    const audioRef = useRef(new Audio(track_file))
     const intervalRef = useRef()
     const isReady = useState(false)
 
+     
+
     const toNextTrack = () => {
         console.log('TODO go to next')
-        if (trackIndex < tracks.length - 1) {
+        if (trackIndex < props.data.results.length - 1) {
             setTrackIndex(trackIndex + 1)
         } else {
             setTrackIndex(0)
@@ -57,7 +63,7 @@ function Bar() {
     useEffect(() => {
         audioRef.current.pause()
 
-        audioRef.current = new Audio(audioSrc)
+        audioRef.current = new Audio(track_file)
         setTrackProgress(audioRef.current.currentTime)
 
         if (isReady.current) {
@@ -95,7 +101,7 @@ function Bar() {
     const toPrevTrack = () => {
         console.log('TODO go to prev')
         if (trackIndex - 1 < 0) {
-            setTrackIndex(tracks.length - 1)
+            setTrackIndex(props.data.results.length - 1)
         } else {
             setTrackIndex(trackIndex - 1)
         }
@@ -131,7 +137,7 @@ function Bar() {
                         {isOpenLoading ? (
                             <SB.LoadingBar />
                         ) : (
-                            <PlayTrack autho={artist} album={title} />
+                            <PlayTrack autho={author} album={album} />
                         )}
                     </S.BarPlayer>
                     <S.BarVolumeBlockVo>

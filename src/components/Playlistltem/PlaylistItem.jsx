@@ -1,82 +1,41 @@
+import { useEffect, useRef } from 'react'
 import { useThemeContext } from '../../context/theme'
+import { usePostLikeMutation } from '../../servises/serv'
+import Bar from '../Bar/Bar'
 import * as S from './style'
 
-function Item() {
+function Item(props) {
+    console.log(props.mass)
+    
     return (
         <S.ContentPlaylist>
-            <PlaylistItem
-                name="Guilt"
-                executor="Nero"
-                album="Welcome Reality"
-                time="4:44"
-            />
-            <PlaylistItem
-                name="Elektro"
-                executor="Dynoro, Outwork, Mr. Gee"
-                album="Elektro"
-                time="2:22"
-            />
-            <PlaylistItem
-                name="I’m Fire"
-                executor="Ali Bakgor"
-                album="I’m Fire"
-                time="2:22"
-            />
-            <PlaylistItem
-                name="Non Stop"
-                executor="Стоункат, Psychopath"
-                album="Non Stop"
-                time="4:12"
-            />
-            <PlaylistItem
-                name="Run Run"
-                executor="Jaded, Will Clarke, AR/CO"
-                album="Run Run"
-                time="2:54"
-            />
-            <PlaylistItem
-                name="Eyes on Fire"
-                executor="Blue Foundation, Zeds Dead"
-                album="Eyes on Fire"
-                time="5:20"
-            />
-            <PlaylistItem
-                name="Mucho Bien"
-                executor="HYBIT, Mr. Black, Offer Nissim, Hi Profile"
-                album="Mucho Bien"
-                time="3:41"
-            />
-            <PlaylistItem
-                name="Knives n Cherries"
-                executor="minthaze"
-                album="Captivating"
-                time="1:48"
-            />
-            <PlaylistItem
-                name="How Deep Is Your Love"
-                executor="Calvin Harris, Disciples"
-                album="How Deep Is Your Love"
-                time="3:32"
-            />
-            <PlaylistItem
-                name="Morena"
-                executor="Tom Boxer"
-                album="Soundz Made in Romania"
-                time="3:36"
-            />
-            <PlaylistItem
-                name="Morena"
-                executor="Tom Boxer"
-                album="Soundz Made in Romania"
-                time="3:36"
-            />
+            {props.mass.results.map((element, index) => (
+                <PlaylistItem 
+                    id = {element.id}
+                    key={index}
+                    name={element.name}
+                    executor={element.author}
+                    album={element.album}
+                    time={element.duration_in_seconds}
+                    track_file={element.track_file}
+                    setSrc={props.setSrc}
+                />
+            ))}
         </S.ContentPlaylist>
     )
 }
 function PlaylistItem(props) {
+    const [data, { isLoading }] = usePostLikeMutation()
     const { theme } = useThemeContext()
+    function choice() {
+        console.log(props.track_file);
+        props.setSrc(props)
+    }
+    function like() {
+        data(props.id)
+    }
     return (
-        <S.PlaylistItem>
+        <S.PlaylistItem onClick={choice}>
             <S.PlaylistTrack>
                 <S.TrackTitle>
                     <S.TrackTitleImage style={{ background: theme.colorIcon }}>
@@ -132,7 +91,7 @@ function PlaylistItem(props) {
                     </S.TrackAlbumLink>
                 </S.TrackAlbum>
                 <div className="track__time">
-                    <S.TrackTimeSvg alt="time">
+                    <S.TrackTimeSvg onClick={like}  alt="time">
                         <use xlinkHref="img/icon/sprite.svg#icon-like"></use>
                     </S.TrackTimeSvg>
                     <S.TrackTimeText>{props.time}</S.TrackTimeText>

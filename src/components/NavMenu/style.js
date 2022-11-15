@@ -11,7 +11,7 @@ export const MenuItem = styled.li`
   margin-bottom: 16px;
   list-style-type: none;
 `;
-export const menuLink = styled.a`
+export const MenuLink = styled.a`
 color: #ffffff;
   font-weight: 400;
   font-size: 16px;

@@ -11,6 +11,8 @@ import Item from '../Playlistltem/PlaylistItem'
 import { useThemeContext } from '../../context/theme'
 
 import { useState, useEffect } from 'react'
+import { useGetAllTrackQuery } from '../../servises/serv'
+import Bar from '../Bar/Bar'
 
 function Main() {
     const { toggleTheme, theme } = useThemeContext()
@@ -33,16 +35,13 @@ function Main() {
         setIsOpenAuthor(false)
         setIsOpenYear(false)
     }
-    const [isOpenLoading, setIsOpenLoading] = useState(true)
-    const finishLoading = () => {
-        setIsOpenLoading(false)
-    }
-    useEffect(() => {
-        const intervalId = setTimeout(finishLoading, 2000)
 
-        return () => clearTimeout(intervalId)
-    })
+    const { data, error, isLauding } = useGetAllTrackQuery()
+    
 
+    console.log(data)
+    console.log(isLauding)
+    const [song,setSong]= useState()
     return (
         <S.Main style={{ background: theme.background, color: theme.color }}>
             <S.MainNav style={{ background: theme.backgroundNavMenu }}>
@@ -81,10 +80,11 @@ function Main() {
                 </S.CenterBlockFilter>
                 <S.CenterblockContent>
                     <PlaylistTitle />
-                    {isOpenLoading ? <Loading.LoadingPly /> : <Item />}
+                    {(data === undefined) ? <Loading.LoadingPly /> : <Item setSrc={setSong} mass={data} />}
                 </S.CenterblockContent>
             </S.MainCenterBlock>
-            {isOpenLoading ? <Loading.SidebarLoad /> : <Sidebar />}
+            {(data == undefined) ? <Loading.SidebarLoad /> : <Sidebar />}
+            {(data === undefined) ? <div /> : <Bar data={data} song={song}/>}
         </S.Main>
     )
 }
